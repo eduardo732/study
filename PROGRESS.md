@@ -7,10 +7,20 @@
 ## Checklist
 
 ### Month 1 — Frontend Foundations
-- [ ] React fundamentals: state, props, re-render mechanics
+- [x] Backend API scaffolded (Express, in-memory) + frontend scaffolded (Vite + React) — `month-01-frontend-foundations/`
+- [x] Fetch + display applications list (`useState`/`useEffect`), understood initial render vs. re-render sequencing
+- [~] Add-application form with controlled inputs — written, works, but has 2 open fixes (see below)
+- [ ] React fundamentals: state, props, re-render mechanics (in progress — see below)
 - [ ] Practiced `React.memo` / `useMemo` / `useCallback`, used DevTools Profiler
-- [ ] Built a small CRUD app connected to a real backend
+- [ ] Edit / delete an application
+- [ ] Filter by status
+- [ ] Built a small CRUD app connected to a real backend (in progress)
 - [ ] Side quest: reproduced a lost-update race condition locally
+
+**Open fixes from 2026-07-18 session** (pick up here next time):
+1. Form doesn't reset `company`/`role`/`status` state after successful submit.
+2. Status value naming inconsistency: frontend `STATUS_OPTIONS` uses `'offered'`, backend seed data uses `'offer'` — pick one, make consistent (will break the upcoming "filter by status" task otherwise).
+3. Pending exercise: use React DevTools Profiler while typing in the "Company" field, observe that the whole `App` (including the list) re-renders on every keystroke since all state lives in one component — then discuss splitting the form into its own child component.
 
 ### Month 2 — API & Security Hardening
 - [ ] Implemented token-bucket rate limiting on an endpoint
@@ -52,3 +62,8 @@
 - Strengths confirmed: distributed systems/Saga-pattern instinct, practical API/auth experience, security judgment (authn/authz, XSS), fast real-time learner (self-corrected on CORS reasoning).
 - Gaps confirmed: DB isolation levels, React re-render mechanics, cursor pagination, rate limiting strategies, race condition/concurrency-vs-parallelism vocabulary. AI tooling untested.
 - Produced `roadmap.md` (6-month plan) and set up this repo structure (month folders + progress tracking).
+- Set up git repo, initial commit (`433a11e`).
+- Started Month 1 build: scaffolded Express backend + Vite/React frontend for a **Job Application Tracker** (`month-01-frontend-foundations/`).
+- Built fetch-and-display of applications together; Eduardo correctly reasoned through the initial-render-vs-re-render sequence after one correction (had cause/effect slightly inverted at first).
+- Eduardo wrote the add-application form (controlled inputs + POST) independently — solid first attempt: correct controlled-input pattern, correct use of server response to update state. Two open fixes logged above, plus a pending DevTools Profiler exercise on re-render cascades.
+- English note: flagged "charged" vs. "loaded" as a false-friend mistake (cargado → loaded, not charged).
